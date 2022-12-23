@@ -6,7 +6,7 @@ echo -e "\n NumberJack \n"
 
 ch=0
 
-while [ $ch -ne 3 ]; do
+while [ "$ch" -ne 3 ]; do
   echo "PLAY : Hit 1 and enter.
        HELP : Hit 2 and enter.
        EXIT : Hit 3 and enter."
@@ -21,13 +21,12 @@ while [ $ch -ne 3 ]; do
   
     while [ "${c}" -eq 0 ]; do
       x=11
-    #   r=("$(shuf -i 0-9 -n 10)")
       mapfile -t r < <(shuf -i 0-9 -n 10)
       
       echo "${r[@]}"; 
     
       for i in {1..10}; do
-        a[$i]="${i}"
+        a[i]="${i}"
       done
 
       echo "${a[@]}"
@@ -38,7 +37,7 @@ while [ $ch -ne 3 ]; do
         break
       fi
 
-      if [ "${r[$(("${x}"-1))]}" -eq "${n}" ]; then
+      if [ "${r[$( ("${x}"-1))]}" -eq "${n}" ]; then
         echo "Great"
         ((p=p+1))
       else
